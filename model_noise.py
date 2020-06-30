@@ -40,6 +40,7 @@ class DCGAN(object):
     """
     self.sess = sess
     self.is_grayscale = (c_dim == 1)
+    self.bna = batch_norm_adaptive
 
     self.batch_size = batch_size
     self.sample_num = batch_size
@@ -114,13 +115,13 @@ class DCGAN(object):
     self.flow_model = tf.make_template('model', 
       lambda x: nvp.model_spec(x, reuse=False, model_type=self.model_type, train=False, 
         alpha=self.alpha, init_type=self.init_type, hidden_layers=self.hidden_layers,
-        no_of_layers=self.no_of_layers, batch_norm_adaptive=batch_norm_adaptive), unique_name_='model')
+        no_of_layers=self.no_of_layers, batch_norm_adaptive=self.bna), unique_name_='model')
 
     #### f: Image Space to Latent space for training #########
     self.trainable_flow_model = tf.make_template('model', 
       lambda x: nvp.model_spec(x, reuse=True, model_type=self.model_type, train=True, 
         alpha=self.alpha, init_type=self.init_type, hidden_layers=self.hidden_layers,
-        no_of_layers=self.no_of_layers, batch_norm_adaptive=batch_norm_adaptive), unique_name_='model')
+        no_of_layers=self.no_of_layers, batch_norm_adaptive=self.bna), unique_name_='model')
 
     # ##### f^-1: Latent to image (trainable)#######
     self.flow_inv_model = tf.make_template('model', 
