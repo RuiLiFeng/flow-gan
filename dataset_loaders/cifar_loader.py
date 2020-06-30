@@ -37,7 +37,7 @@ def unpickle(file):
     fo.close()
     return {'x': d['data'].reshape((10000,3,32,32)), 'y': np.array(d['labels']).astype(np.uint8)}
 
-def load_cifar(data_dir="data/cifar_data/"):
+def load_cifar(data_dir="/gdata2/fengrl/data/cifar_data/"):
     if not os.path.exists(data_dir):
         print('creating folder', data_dir)
         os.makedirs(data_dir)

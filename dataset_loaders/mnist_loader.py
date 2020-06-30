@@ -2,7 +2,7 @@ import numpy as np
 from tensorflow.examples.tutorials.mnist import input_data
 
 def load_mnist(send_labels=False):
-    mnist = input_data.read_data_sets("data/mnist_data/", one_hot=False)
+    mnist = input_data.read_data_sets("gdata2/fengrl/data/mnist_data/", one_hot=False)
     np.random.seed(0)
     
     train_data = mnist.train.images[:,:]
