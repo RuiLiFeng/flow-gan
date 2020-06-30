@@ -20,7 +20,7 @@ flags.DEFINE_integer("input_width", None, "The size of image to use If None, sam
 flags.DEFINE_integer("c_dim", 3, "Dimension of image color. [3]")
 flags.DEFINE_string("dataset", "mnist", "The name of dataset [mnist, multi-mnist, cifar-10]")
 flags.DEFINE_string("checkpoint_dir", "checkpoint", "Directory name to save the checkpoints [checkpoint]")
-flags.DEFINE_string("log_dir", "logs", "Directory name to save the logs [logs]")
+flags.DEFINE_string("log_file_dir", "logs", "Directory name to save the logs [logs]")
 flags.DEFINE_string("sample_dir", "samples", "Directory name to save the image samples [samples]")
 flags.DEFINE_string("f_div", "wgan", "f-divergence used for specifying the objective")
 flags.DEFINE_string("prior", "gaussian", "prior for generator")
@@ -80,7 +80,7 @@ def main(_):
         lr_decay=FLAGS.lr_decay,
         min_lr=FLAGS.min_lr,
         model_type=FLAGS.model_type,
-        log_dir=FLAGS.log_dir,
+        log_dir=FLAGS.log_file_dir,
         alpha=FLAGS.alpha,
         batch_norm_adaptive=FLAGS.batch_norm_adaptive,
         init_type=FLAGS.init_type,
