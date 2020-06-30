@@ -15,7 +15,7 @@ import scipy.misc
 import math
 import sys
 
-MODEL_DIR = '/tmp/imagenet'
+MODEL_DIR = '/gdata2/fengrl/'
 DATA_URL = 'http://download.tensorflow.org/models/image/imagenet/inception-2015-12-05.tgz'
 softmax = None
 
@@ -93,7 +93,8 @@ def _init_inception():
                     new_shape.append(None)
                 else:
                     new_shape.append(s)
-            o._shape = tf.TensorShape(new_shape)
+            #o._shape = tf.TensorShape(new_shape)
+            o.set_shape(tf.TensorShape(new_shape))
     w = sess.graph.get_operation_by_name("softmax/logits/MatMul").inputs[1]
     logits = tf.matmul(tf.squeeze(pool3), w)
     softmax = tf.nn.softmax(logits)
