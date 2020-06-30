@@ -328,7 +328,7 @@ class CouplingLayer(Layer):
 
         y += skip
         noise = tf.random.normal([tf.shape(y)[0], 1, y.shape[2], y.shape[3]], dtype=tf.float32)
-        noise_strength = tf.get_variable('noise_strength', shape=[], initializer=tf.initializers.zeros())
+        noise_strength = tf.get_variable('noise_strength%d' % r, shape=[], initializer=tf.initializers.zeros())
         y += noise_strength * noise
         y = tf.nn.relu(y)
         if self.scaling:
