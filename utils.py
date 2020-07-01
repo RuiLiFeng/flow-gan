@@ -13,7 +13,7 @@ from six.moves import xrange
 
 import tensorflow as tf
 import tensorflow.contrib.slim as slim
-import imageio
+from PIL import Image
 
 import matplotlib
 matplotlib.use('Agg')
@@ -73,7 +73,8 @@ def merge(images, size):
 
 def imsave(images, size, path):
   image = np.squeeze(merge(images, size))
-  return imageio.imwrite(path, image)
+  image = Image.fromarray(image).astype(np.uint8)
+  return image.save(path)
 
 def center_crop(x, crop_h, crop_w,
                 resize_h=64, resize_w=64):
