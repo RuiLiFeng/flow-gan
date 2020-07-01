@@ -91,7 +91,7 @@ def main(_):
         like_reg=FLAGS.like_reg,
         df_dim=FLAGS.df_dim)
 
-  dcgan.train(FLAGS)
+    dcgan.train(FLAGS)
 
 if __name__ == '__main__':
   tf.app.run()
